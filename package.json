@@ -1,0 +1,12 @@
+{
+  "name": "raml2code-fixtures",
+  "version": "0.0.1",
+  "description": "fixture for raml2code",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "3.8.11",
+    "gulp-jsonlint": "^1.0.2",
+    "gulp-raml": "0.1.3",
+    "run-sequence": "^1.0.2"
+  }
+}
