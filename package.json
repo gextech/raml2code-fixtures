@@ -4,14 +4,16 @@
   "description": "fixture for raml2code",
   "dependencies": {},
   "devDependencies": {
-    "lodash": "2.4.1",
+    "chai": "^1.10.0",
+    "deref": "0.2.8",
+    "glob": "^4.3.5",
     "gulp": "3.8.11",
     "gulp-jsonlint": "^1.0.2",
-    "glob": "^4.3.5",
+    "gulp-mocha": "2.0.0",
     "gulp-raml": "0.1.3",
     "json-schema-validator": "^0.2.1",
+    "lodash": "2.4.1",
     "run-sequence": "^1.0.2",
-    "gulp-mocha": "2.0.0",
-    "chai": "^1.10.0"
+    "skeemas": "^1.1.4"
   }
 }

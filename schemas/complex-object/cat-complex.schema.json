@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "Cat",
-  "id": "cat-complex",
+  "id": "complex-object/cat-complex.schema.json",
+  "title": "Complex Cat",
   "description": "A cat from Atoms catalog",
   "type": "object",
   "properties": {
@@ -21,11 +21,11 @@
     },
     "friends": {
       "description": "friends",
-      "$ref": "genericArray.schema.json"
+      "$ref": "../collections/genericArray.schema.json"
     },
     "sings": {
       "description": "characteristics",
-      "$ref": "genericMap.schema.json"
+      "$ref": "../collections/genericMap.schema.json"
     },
     "age": {
       "description": "The age of the cat",
@@ -36,8 +36,8 @@
     "weight": {
       "description": "The weight of the cat",
       "type": "number",
-      "minimum": ".1",
-      "maximum": "10.00"
+      "minimum": 0.1,
+      "maximum": 10.0
     },
     "food": {
       "description": "Something to eat",
@@ -58,7 +58,6 @@
   },
   "required": [
     "id",
-    "name",
-    "errors"
+    "name"
   ]
 }

@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "complex-object/owner.schema.json",
   "title": "Owner",
-  "id": "owner",
   "description": "A owner cat from Atoms catalog",
   "type": "object",
   "properties": {

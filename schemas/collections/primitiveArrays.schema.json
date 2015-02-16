@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "id" : "genericArray.schema.json",
+  "id" : "collections/primitiveArray.schema.json",
   "title": "PrimitiveArray",
   "description": "A container for array primitives",
   "type": "object",

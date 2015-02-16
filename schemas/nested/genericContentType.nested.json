@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "Generic Content Type Schema",
+  "id": "nested/genericContentTypeSchema.nested.json",
   "title": "Generic Content Type Schema",
   "description": "This schema includes properties which all content types share",
   "definitions": {

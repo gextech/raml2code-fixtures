@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "CatBasic",
-  "id": "cat-basic-schema.json",
+  "id": "simple-object/cat-basic.schema.json",
+  "title": "Cat Basic",
   "description": "A cat from Atoms catalog",
   "type": "object",
   "properties": {
@@ -24,13 +24,12 @@
     "weight": {
       "description": "The weight of the cat",
       "type": "number",
-      "minimum": ".1",
-      "maximum": "10.00"
+      "minimum": 0.1,
+      "maximum": 10.0
     }
   },
   "required": [
     "id",
-    "name",
-    "errors"
+    "name"
   ]
 }

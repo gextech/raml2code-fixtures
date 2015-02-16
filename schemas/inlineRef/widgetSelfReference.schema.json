@@ -1,7 +1,9 @@
 {
-  "id": "widget",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "id": "inlineRef/widgetSelfReference.schema.json",
+  "title": "WidgetInlineProperty",
   "type": "object",
-  "title": "Widget",
+  "title": "WidgetSelfReference",
   "description": "A widget is used to generated partials",
   "required": ["id", "name", "groupId", "artifactId", "revision", "description"],
   "properties": {
@@ -10,7 +12,7 @@
       "type": "string"
     },
     "etiquetas":{
-      "$ref": "widget#/definitions/innerProperties/tags"
+      "$ref": "#/definitions/innerProperties/tags"
     }
   },
   "definitions": {
@@ -28,7 +30,7 @@
         "type": "array",
         "items": {
           "type": "string",
-          "format": "[a-z]{1,20}"
+          "pattern": "[a-z]{1,20}"
         },
         "uniqueItems": true
       },
@@ -44,7 +46,7 @@
         "description": "The version of the Widget ",
         "type": "string"
       },
-      "description": {
+      "desc": {
         "description": "The description of the Widget ",
         "type": "string"
       }

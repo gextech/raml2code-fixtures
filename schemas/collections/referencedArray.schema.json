@@ -1,10 +1,10 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "id" : "genericArray.schema.json",
-  "title": "GenericArray",
+  "id" : "collections/referencedArray.schema.json",
+  "title": "ReferencedArray",
   "description": "A single array",
   "type": "array",
   "items":{
-    "$ref": "cat.schema.json"
+    "$ref": "../complex-object/cat-complex.schema.json"
   }
 }
