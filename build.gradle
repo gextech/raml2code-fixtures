@@ -1,0 +1,37 @@
+buildscript {
+  repositories {
+    jcenter()
+  }
+  dependencies {
+    classpath "be.filipblondeel.gradle:gradle-gulp-plugin:${gulpPluginVersion}"
+  }
+}
+
+apply plugin: 'groovy'
+
+
+apply plugin: 'gulp'
+
+node {
+  // Version of node to use.
+  version = '0.10.28'
+
+  // Enabled the automatic download. False is the default (for now).
+  download = true
+}
+
+gulp_build.dependsOn 'npmInstall'
+defaultTasks 'build'
+check.dependsOn gulp_default
+
+repositories {
+  mavenCentral()
+  mavenLocal()
+  jcenter()
+}
+
+dependencies {
+  compile(group: "com.github.fge", name: "json-schema-validator", version: "${jsonSchemaValidatorVersion}");
+  testCompile "org.codehaus.groovy:groovy-all:${groovyVersion}"
+  testCompile "org.spockframework:spock-core:${spockVersion}"
+}
