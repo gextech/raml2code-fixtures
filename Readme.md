@@ -1,5 +1,7 @@
 ## RAML 2 code fixtures
 
+[![Build Status](https://img.shields.io/travis/gextech/raml2code-fixtures/master.svg?style=flat)](https://travis-ci.org/gextech/raml2code-fixtures)
+
 This project contains the fixtures used to test the generators contained on raml2code
 
 We use (https://github.com/fge/json-schema-validator)[fge/json-schema-validator] Schema validator because there a bunch
