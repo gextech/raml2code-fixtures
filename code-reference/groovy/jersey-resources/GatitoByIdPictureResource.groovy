@@ -14,14 +14,14 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON
 interface GatitoByIdPictureResource {
 
   /***
-   * @return Response This must be a valid Cat JSON object.
+   * @return Response This must be a valid Complex Cat JSON object.
    */
   @POST
   @Consumes(MediaType.MULTIPART_FORM_DATA)
   Response postGatitoByIdPicture(
-    @PathParam("catId")String catId,
-    @FormDataParam("file")InputStream file,
-    @FormDataParam("file")FormDataContentDisposition fileData);
+      @PathParam("catId")String catId,
+      @FormDataParam("file")InputStream file,
+      @FormDataParam("file")FormDataContentDisposition fileData);
 
 
 }

@@ -5,7 +5,7 @@ import groovy.transform.*
  **/
 @CompileStatic
 @Canonical
-public class Cat implements Serializable {
+public class ComplexCat implements Serializable {
 
   /* The unique identifier for a cat */
   Long id
@@ -34,22 +34,10 @@ public class Cat implements Serializable {
   /* The owner of the cat. */
   Owner owner
 
-  /* Errores al procesar la petición */
-  List<Error> errors
-
   static class Food implements Serializable {
 
     /* what the cat eats */
     String name
 
-    /* Something nested to eat */
-    Description description
-
-    static class Description implements Serializable {
-
-      /* what the cat eats */
-      String name
-
-    }
   }
 }

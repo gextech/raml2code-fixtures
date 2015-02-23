@@ -8,7 +8,7 @@
     module.exports = client(require('popsicle'));
   } else {
     // Browser globals (root is window).
-    root.GatitosApi = client(root.popsicle);
+    root.FixtureApi = client(root.popsicle);
   }
 })(this, function (popsicle) {
   var TEMPLATE_REGEXP = /\{([^\{\}]+)\}/g;
@@ -81,8 +81,6 @@
     this._client = client;
 
     this.cats = new Resource1(uri + '/cats', client);
-    this.settings = new Resource6(uri + '/settings', client);
-    this.arrayprimitives = new Resource8(uri + '/arrayprimitives', client);
   };
 
 
@@ -148,47 +146,6 @@
 
 
   Resource5.prototype.post = function (body, options) {
-    return handleRequest(this._client, this._uri, 'POST', body, options);
-  };
-  function Resource6 (uri, client) {
-    this._uri    = uri;
-    this._client = client;
-
-  };
-
-  Resource6.prototype.key = function (/* ...args */) {
-    var uri = this._uri + template('/{0}', arguments, [undefined]);
-
-    return new Resource7(uri, this._client);
-  };
-
-  function Resource7 (uri, client) {
-    this._uri    = uri;
-    this._client = client;
-
-  };
-
-
-  Resource7.prototype.get = function (body, options) {
-    return handleRequest(this._client, this._uri, 'GET', body, options);
-  };
-  Resource7.prototype.post = function (body, options) {
-    return handleRequest(this._client, this._uri, 'POST', body, options);
-  };
-  Resource7.prototype.put = function (body, options) {
-    return handleRequest(this._client, this._uri, 'PUT', body, options);
-  };
-  Resource7.prototype.delete = function (body, options) {
-    return handleRequest(this._client, this._uri, 'DELETE', body, options);
-  };
-  function Resource8 (uri, client) {
-    this._uri    = uri;
-    this._client = client;
-
-  };
-
-
-  Resource8.prototype.post = function (body, options) {
     return handleRequest(this._client, this._uri, 'POST', body, options);
   };
 

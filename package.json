@@ -1,6 +1,6 @@
 {
   "name": "raml2code-fixtures",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "fixtures for raml2code",
   "dependencies": {},
   "devDependencies": {

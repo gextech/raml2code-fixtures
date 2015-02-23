@@ -14,18 +14,18 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON
 interface GatitosResource {
 
   /***
-   * @return Response This must be a valid Cats JSON object.
+   * @return Response This must be a valid GenericArray JSON object.
    */
   @GET
   Response getGatitos(
-    @QueryParam("searchBy")String searchBy);
+      @QueryParam("searchBy")String searchBy);
 
   /***
-   * @return Response This must be a valid Cat JSON object.
+   * @return Response This must be a valid Complex Cat JSON object.
    */
   @POST
   Response postGatitos(
-    Cat cat);
+      Complex Cat complex cat);
 
 
 }

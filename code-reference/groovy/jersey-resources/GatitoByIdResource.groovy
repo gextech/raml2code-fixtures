@@ -14,22 +14,22 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON
 interface GatitoByIdResource {
 
   /***
-   * @return Response This must be a valid Cat JSON object.
+   * @return Response This must be a valid Complex Cat JSON object.
    */
   @GET
   Response getGatitoById(
-    @PathParam("catId")String catId,
-    @QueryParam("filterBy")String filterBy,
-    @QueryParam("orderBy")String orderBy,
-    @QueryParam("clientSecret")String clientSecret);
+      @PathParam("catId")String catId,
+      @QueryParam("filterBy")String filterBy,
+      @QueryParam("orderBy")String orderBy,
+      @QueryParam("clientSecret")String clientSecret);
 
   /***
-   * @return Response This must be a valid Cat JSON object.
+   * @return Response This must be a valid Complex Cat JSON object.
    */
   @PUT
   Response putGatitoById(
-    @PathParam("catId")String catId,
-    Cat cat);
+      @PathParam("catId")String catId,
+      Complex Cat complex cat);
 
 
 }

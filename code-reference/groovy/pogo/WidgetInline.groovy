@@ -2,11 +2,11 @@ package org.gex.v1
 import groovy.transform.*
 import javax.validation.constraints.*
 /**
-*A widget is used to generated partials
-**/
+ *A widget is used to generated partials
+ **/
 @CompileStatic
 @Canonical
-public class Widget implements Serializable {
+public class WidgetSelfReference implements Serializable {
 
   /* The friendly name of the widget  */
   @NotNull
@@ -16,5 +16,3 @@ public class Widget implements Serializable {
   List<String> etiquetas
 
 }
-
-

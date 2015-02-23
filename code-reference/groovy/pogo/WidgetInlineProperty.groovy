@@ -9,10 +9,9 @@ import javax.validation.constraints.*
 public class WidgetInlineProperty implements Serializable {
 
   /* The friendly name of the widget  */
-  @NotNull
   String name
 
-  /* Inner properties */
+
   Composite composite
 
 
@@ -42,7 +41,7 @@ public class WidgetInlineProperty implements Serializable {
     String revision
 
     /* The description of the Widget  */
-    String description
+    String desc
 
   }
   static class Zid implements Serializable {
