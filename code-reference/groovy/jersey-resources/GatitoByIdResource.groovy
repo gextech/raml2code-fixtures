@@ -29,7 +29,7 @@ interface GatitoByIdResource {
   @PUT
   Response putGatitoById(
       @PathParam("catId")String catId,
-      Complex Cat complex cat);
+      ComplexCat complexCat);
 
 
 }

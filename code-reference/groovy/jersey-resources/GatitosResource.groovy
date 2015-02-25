@@ -25,7 +25,7 @@ interface GatitosResource {
    */
   @POST
   Response postGatitos(
-      Complex Cat complex cat);
+      ComplexCat complexCat);
 
 
 }

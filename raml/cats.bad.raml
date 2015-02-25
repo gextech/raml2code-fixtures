@@ -5,8 +5,8 @@ version: v1
 #baseUri: http:/localhost:8080/{version}/
 mediaType: application/json
 schemas:
-  - cats: !include cats.schema.json
-  - cat: !include cat.schema.json
+  - cat: !include ../schemas/complex-object/cat-complex.schema.json
+  - cats: !include ../schemas/collections/genericArray.schema.json
 resourceTypess:
   - collection: 
       get:

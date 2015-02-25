@@ -1,6 +1,11 @@
 examples
 .idea/
-json-schema-parser-util.iml
+}.iml
 test
 .gitignore
 build/
+.gradle/
+build.gradle
+Readme.md
+test/
+.travis.yml
