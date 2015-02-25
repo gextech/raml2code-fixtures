@@ -75,10 +75,7 @@ helpersUtil.loadSchemasAndRun = function (fn, done) {
 helpersUtil.readSchemas = function (fn, done) {
   return function (err, files) {
     try {
-      var schemas = _.map(files, function (file) {
-        return JSON.parse(fs.readFileSync(file).toString('utf8'));
-      });
-      fn(err, schemas, done);
+      fn(err, files, done);
     } catch (e) {
       done(e);
     }
