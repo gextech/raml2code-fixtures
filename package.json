@@ -1,8 +1,12 @@
 {
   "name": "raml2code-fixtures",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "fixtures for raml2code",
   "main": "test-utils.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:gextech/raml2code-fixtures.git"
+  },
   "dependencies": {
     "chai": "^1.10.0",
     "data2code": "0.0.4",

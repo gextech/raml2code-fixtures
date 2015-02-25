@@ -11,7 +11,6 @@ var data2Code = require('data2code');
 
 
 var helpersUtil = {};
-helpersUtil.testSchemas = path.join(__dirname, 'schemas/') + "**/*schema.json";
 helpersUtil.ramlPath = path.join(__dirname, 'raml/');
 
 helpersUtil.readRaml = function (filename) {
@@ -60,22 +59,31 @@ helpersUtil.loadFixtureRaml = function (raml, fn, done) {
 
 };
 
-helpersUtil.loadSchemasAndRun = function (fn, done) {
+helpersUtil.loadSchemasAndRun = function (fn, done, file) {
+  var testSchemas;
+  if(file === undefined){
+    testSchemas = path.join(__dirname, 'schemas/') + "**/*schema.json";
+  }else{
+    testSchemas = path.join(__dirname, 'schemas/') + file
+  }
 
-  var wrap = function (err, schemas, done) {
+  var wrap = function (err, schemas) {
     helpersUtil.wrapAssertion(function () {
       fn(err, schemas, done);
     }, done)
 
   };
 
-  new Glob(helpersUtil.testSchemas, {}, helpersUtil.readSchemas(wrap, done));
+  new Glob(testSchemas, {}, helpersUtil.readSchemas(wrap, done));
 };
 
 helpersUtil.readSchemas = function (fn, done) {
   return function (err, files) {
     try {
-      fn(err, files, done);
+      var schemas = _.map(files, function (file) {
+        return JSON.parse(fs.readFileSync(file.toString()).toString('utf8'));
+      });
+      fn(err, schemas, done);
     } catch (e) {
       done(e);
     }
