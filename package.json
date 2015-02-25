@@ -1,10 +1,9 @@
 {
   "name": "raml2code-fixtures",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "fixtures for raml2code",
   "main": "test-utils.js",
-  "dependencies": {},
-  "devDependencies": {
+  "dependencies": {
     "chai": "^1.10.0",
     "data2code": "0.0.4",
     "deref": "0.2.8",
