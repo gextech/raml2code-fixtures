@@ -1,6 +1,6 @@
 {
   "name": "raml2code-fixtures",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "fixtures for raml2code",
   "main": "test-utils.js",
   "repository": {
@@ -20,5 +20,9 @@
     "raml-parser": "^0.8.10",
     "run-sequence": "^1.0.2",
     "skeemas": "^1.1.4"
+  },
+  "devDependencies": {
+    "gulp-util": "^3.0.4",
+    "raml2code": "^0.8.41"
   }
 }

@@ -1,56 +1,40 @@
-var path = require('path');
-var codeReferences = path.join(__dirname, 'code-reference/');
-var raml = require('raml-parser');
-var chai = require('chai');
-var _ = require('lodash');
-var should = chai.should();
-var expect = require('chai').expect;
-var fs = require('fs');
-var Glob = require("glob");
-var data2Code = require('data2code');
+var path = require('path'),
+  codeReferences = path.join(__dirname, 'code-reference/'),
+  raml = require('raml-parser'),
+  chai = require('chai'),
+  _ = require('lodash'),
+  should = chai.should(),
+  expect = require('chai').expect,
+  fs = require('fs'),
+  Glob = require("glob"),
+  data2Code = require('data2code'),
+  raml2code = require('raml2code'),
+  gutil = require('gulp-util');
 
 
-var helpersUtil = {};
-helpersUtil.ramlPath = path.join(__dirname, 'raml/');
+var ramlPath = path.join(__dirname, 'raml/');
+exports.ramlPath = ramlPath;
 
-helpersUtil.readRaml = function (filename) {
-  return raml.loadFile(helpersUtil.ramlPath + filename)
+var readRaml = function (filename) {
+  return raml.loadFile(ramlPath + filename)
 };
 
-helpersUtil.wrapAssertion = function (fn, done) {
+var wrapAssertion = function (fn, done) {
   try {
     fn();
   } catch (e) {
     done(e);
+    return e;
   }
 };
 
-helpersUtil.runSimpleTest = function (raml, generator, extra, sampleFile, validateWith, logContent ) {
+exports.wrapAssertion = wrapAssertion;
 
- return function(done){
-   helpersUtil.loadFixtureRaml(raml, function(data, done){
+var loadFixtureRaml = function (raml, fn, done) {
 
-     helpersUtil.wrapAssertion(function(){
-       logContent = logContent || false;
-
-       generator.handleRender = helpersUtil.handleRender.bind(undefined, done, sampleFile, validateWith, logContent);
-       data.extra = extra;
-       data2Code.process(data, generator);
-       done()
-
-     },done);
-
-   }, done);
- }
-
-};
-
-
-helpersUtil.loadFixtureRaml = function (raml, fn, done) {
-
-  var p1 = helpersUtil.readRaml(raml);
+  var p1 = readRaml(raml);
   p1.then(function (ramlData) {
-    helpersUtil.wrapAssertion(function () {
+    wrapAssertion(function () {
       fn(ramlData, done);
     }, done);
   }, function (error) {
@@ -59,25 +43,7 @@ helpersUtil.loadFixtureRaml = function (raml, fn, done) {
 
 };
 
-helpersUtil.loadSchemasAndRun = function (fn, done, file) {
-  var testSchemas;
-  if(file === undefined){
-    testSchemas = path.join(__dirname, 'schemas/') + "**/*schema.json";
-  }else{
-    testSchemas = path.join(__dirname, 'schemas/') + file
-  }
-
-  var wrap = function (err, schemas) {
-    helpersUtil.wrapAssertion(function () {
-      fn(err, schemas, done);
-    }, done)
-
-  };
-
-  new Glob(testSchemas, {}, helpersUtil.readSchemas(wrap, done));
-};
-
-helpersUtil.readSchemas = function (fn, done) {
+var readSchemas = function (fn, done) {
   return function (err, files) {
     try {
       var schemas = _.map(files, function (file) {
@@ -90,18 +56,7 @@ helpersUtil.readSchemas = function (fn, done) {
   };
 };
 
-helpersUtil.handleRender = function (done, sampleFile, validateWith, logContent, results) {
-
-
-    var validateWithContent = _.find(results, function (arr) {
-      return arr[validateWith] !== undefined
-    });
-
-    helpersUtil.compareContents({body: validateWithContent[validateWith], name: validateWith}, sampleFile, logContent);
-
-};
-
-helpersUtil.compareContents = function (content, fixtureName, logContent) {
+var compareContents = function (content, fixtureName, logContent) {
 
 
   if (logContent) {
@@ -110,7 +65,7 @@ helpersUtil.compareContents = function (content, fixtureName, logContent) {
     console.log("==================================================")
   }
 
-  if(fixtureName !== undefined){
+  if (fixtureName !== undefined) {
 
     var sampleFileFs = codeReferences + fixtureName;
     var sampleText = fs.readFileSync(sampleFileFs);
@@ -124,16 +79,96 @@ helpersUtil.compareContents = function (content, fixtureName, logContent) {
 
 };
 
+var validateDataWithFixture = function (done, sampleFile, validateWith, logContent, file) {
 
-helpersUtil.validateDataWithFixture = function (done, sampleFile, validateWith, logContent, file) {
-
-  helpersUtil.wrapAssertion(function () {
+  return wrapAssertion(function () {
     if (file.path == validateWith) {
       var content = file.contents.toString('utf8');
-      helpersUtil.compareContents({body: content, name: file.path}, sampleFile, logContent);
+      compareContents({body: content, name: file.path}, sampleFile, logContent);
     }
   }, done);
 
 };
 
-module.exports = helpersUtil;
+exports.runSimpleTest = function (raml, generator, extra, sampleFile, validateWith, logContent) {
+
+  return function (done) {
+    loadFixtureRaml(raml, function (data, done) {
+
+      wrapAssertion(function () {
+        logContent = logContent || false;
+
+        generator.handleRender = handleRender.bind(undefined, done, sampleFile, validateWith, logContent);
+        data.extra = extra;
+        data2Code.process(data, generator);
+        done();
+
+      }, done);
+
+    }, done);
+  }
+
+};
+
+exports.loadSchemasAndRun = function (fn, done, file) {
+  var testSchemas;
+  if (file === undefined) {
+    testSchemas = path.join(__dirname, 'schemas/') + "**/*schema.json";
+  } else {
+    testSchemas = path.join(__dirname, 'schemas/') + file
+  }
+
+  var wrap = function (err, schemas) {
+    wrapAssertion(function () {
+      fn(err, schemas, done);
+    }, done)
+
+  };
+
+  new Glob(testSchemas, {}, readSchemas(wrap, done));
+};
+
+var handleRender = function (done, sampleFile, validateWith, logContent, results) {
+
+  var validateWithContent = _.find(results, function (arr) {
+    return arr[validateWith] !== undefined
+  });
+
+  compareContents({body: validateWithContent[validateWith], name: validateWith}, sampleFile, logContent);
+
+};
+
+exports.handleRender = handleRender;
+
+
+exports.raml2codeIntegration = function (done, ramlFile, generator, extra, sampleFile, validateWith, logContent) {
+
+  logContent = logContent || false;
+
+  var raml2codeInstance = raml2code({generator: generator, extra: extra});
+  var innerRamlPath = ramlPath + ramlFile;
+  var ramlContents = fs.readFileSync(innerRamlPath);
+
+  raml2codeInstance.write(new gutil.File({
+    path: innerRamlPath,
+    contents: ramlContents
+  }));
+
+  raml2codeInstance.on('data', function (file) {
+
+    if (file.path === validateWith) {
+      var e = validateDataWithFixture(done, sampleFile, validateWith, logContent, file);
+      if(e === undefined || e === null){
+        done();
+      }
+
+    }
+  });
+
+  raml2codeInstance.on('error', function (error) {
+    console.log("raml2code integration error", error);
+    done(error);
+  });
+
+};
+

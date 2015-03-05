@@ -22,6 +22,7 @@ node {
 
 gulp_build.dependsOn 'npmInstall'
 defaultTasks 'build'
+check.dependsOn installGulp
 check.dependsOn gulp_default
 
 repositories {
