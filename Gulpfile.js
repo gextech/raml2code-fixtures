@@ -27,4 +27,5 @@ gulp.task('test', function(cb){
     ));
 });
 
-gulp.task('default', ['raml', 'json' ]);
+gulp.task('build', ['raml', 'json' ]);
+gulp.task('default', ['build']);

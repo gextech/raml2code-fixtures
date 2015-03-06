@@ -21,9 +21,10 @@ node {
 }
 
 gulp_build.dependsOn 'npmInstall'
+gulp_build.dependsOn installGulp
 defaultTasks 'build'
-check.dependsOn installGulp
-check.dependsOn gulp_default
+
+check.dependsOn gulp_build
 
 repositories {
   mavenCentral()
