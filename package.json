@@ -1,6 +1,6 @@
 {
   "name": "raml2code-fixtures",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "fixtures for raml2code",
   "main": "test-utils.js",
   "repository": {
@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "chai": "^1.10.0",
-    "data2code": "0.0.4",
+    "data2code": "0.0.6",
     "deref": "0.2.8",
     "glob": "^4.3.5",
     "gulp": "3.8.11",
@@ -21,6 +21,6 @@
     "run-sequence": "^1.0.2",
     "skeemas": "^1.1.4",
     "gulp-util": "^3.0.4",
-    "raml2code": "^0.8.41"
+    "raml2code": "^1.8.1"
   }
 }
