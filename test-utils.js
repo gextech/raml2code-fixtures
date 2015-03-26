@@ -66,8 +66,13 @@ var compareContents = function (content, fixtureName, logContent) {
   }
 
   if (fixtureName !== undefined) {
+    var sampleFileFs;
+    if(path.resolve(fixtureName) === path.normalize(fixtureName)){
+      sampleFileFs= fixtureName;
+    }else{
+      sampleFileFs = codeReferences + fixtureName;
+    }
 
-    var sampleFileFs = codeReferences + fixtureName;
     var sampleText = fs.readFileSync(sampleFileFs);
 
     sampleText = sampleText.toString('utf8').split('\n');
@@ -91,7 +96,6 @@ var validateDataWithFixture = function (done, sampleFile, validateWith, logConte
 };
 
 exports.runSimpleTest = function (raml, generator, extra, sampleFile, validateWith, logContent) {
-
   return function (done) {
     loadFixtureRaml(raml, function (data, done) {
 
@@ -100,7 +104,8 @@ exports.runSimpleTest = function (raml, generator, extra, sampleFile, validateWi
 
         generator.handleRender = handleRender.bind(undefined, done, sampleFile, validateWith, logContent);
         data.extra = extra;
-        data2Code.process(data, generator);
+        var results = data2Code.process(data, generator);
+        handleRender(done, sampleFile, validateWith, logContent, results);
         done();
 
       }, done);
@@ -129,7 +134,6 @@ exports.loadSchemasAndRun = function (fn, done, file) {
 };
 
 var handleRender = function (done, sampleFile, validateWith, logContent, results) {
-
   var validateWithContent = _.find(results, function (arr) {
     return arr[validateWith] !== undefined
   });
