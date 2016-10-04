@@ -6,11 +6,10 @@ import java.util.Map
 import org.gex.dto.v1.*
 
 import org.glassfish.jersey.media.multipart.*
-import static javax.ws.rs.core.MediaType.APPLICATION_JSON
 
 @Path("/cats")
-@Consumes(APPLICATION_JSON)
-@Produces(APPLICATION_JSON)
+@Consumes("application/json")
+@Produces("application/json")
 interface GatitosResource {
 
   /***

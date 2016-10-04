@@ -1,6 +1,6 @@
 {
   "name": "raml2code-fixtures",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "fixtures for raml2code",
   "main": "test-utils.js",
   "repository": {
