@@ -17,6 +17,7 @@ interface SettingsResource {
    */
   @GET
   Response getSettings(
+      @Context UriInfo uriInfo,
       @PathParam("key")String key);
 
   /***
@@ -24,6 +25,7 @@ interface SettingsResource {
    */
   @POST
   Response postSettings(
+      @Context UriInfo uriInfo,
       @PathParam("key")String key,
       Map genericmap);
 
@@ -32,6 +34,7 @@ interface SettingsResource {
    */
   @PUT
   Response putSettings(
+      @Context UriInfo uriInfo,
       @PathParam("key")String key,
       List genericarray);
 
@@ -40,6 +43,7 @@ interface SettingsResource {
    */
   @DELETE
   Response deleteSettings(
+      @Context UriInfo uriInfo,
       @PathParam("key")String key);
 
 
