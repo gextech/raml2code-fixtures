@@ -17,6 +17,7 @@ interface ArrayPrimitivesResource {
    */
   @POST
   Response postArrayPrimitives(
+      @Context UriInfo uriInfo,
       List<String> genericarray);
 
 

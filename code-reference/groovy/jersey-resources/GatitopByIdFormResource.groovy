@@ -17,6 +17,7 @@ interface GatitopByIdFormResource {
    */
   @POST
   Response postGatitopByIdForm(
+      @Context UriInfo uriInfo,
       @PathParam("catId")String catId,
       @FormDataParam("name")String name);
 

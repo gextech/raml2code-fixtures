@@ -17,6 +17,7 @@ interface GatitosResource {
    */
   @GET
   Response getGatitos(
+      @Context UriInfo uriInfo,
       @QueryParam("searchBy")String searchBy);
 
   /***
@@ -24,6 +25,7 @@ interface GatitosResource {
    */
   @POST
   Response postGatitos(
+      @Context UriInfo uriInfo,
       ComplexCat complexCat);
 
 

@@ -17,6 +17,7 @@ interface GatitoByIdResource {
    */
   @GET
   Response getGatitoById(
+      @Context UriInfo uriInfo,
       @PathParam("catId")String catId,
       @QueryParam("filterBy")String filterBy,
       @QueryParam("orderBy")String orderBy,
@@ -27,6 +28,7 @@ interface GatitoByIdResource {
    */
   @PUT
   Response putGatitoById(
+      @Context UriInfo uriInfo,
       @PathParam("catId")String catId,
       ComplexCat complexCat);
 

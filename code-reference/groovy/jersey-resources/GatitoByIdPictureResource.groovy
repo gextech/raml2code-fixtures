@@ -18,6 +18,7 @@ interface GatitoByIdPictureResource {
   @POST
   @Consumes(MediaType.MULTIPART_FORM_DATA)
   Response postGatitoByIdPicture(
+      @Context UriInfo uriInfo,
       @PathParam("catId")String catId,
       @FormDataParam("file")InputStream file,
       @FormDataParam("file")FormDataContentDisposition fileData);
